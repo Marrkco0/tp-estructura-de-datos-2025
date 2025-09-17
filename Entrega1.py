@@ -3,15 +3,15 @@ from abc import ABC, abstractmethod
 
 class GestionCorreo(ABC):
     @abstractmethod
-    def enviar_msj(self, destinatarios, asunto, contenido):
+    def enviar_mensaje(self, destinatarios, asunto, contenido):
         pass
 
     @abstractmethod    
-    def recibir_msj(self, mensaje):
+    def recibir_mensaje(self, mensaje):
         pass
 
     @abstractmethod
-    def listar_msj(self, carpeta):
+    def listar_mensaje(self, carpeta):
         pass
 
 # Clase ServidorCorreo
@@ -58,17 +58,17 @@ class Usuario(GestionCorreo):
         return self._carpetas    
     
     # Métodos de Gestión de correo
-    def enviar_msj(self, destinatarios, asunto, contenido):
+    def enviar_mensaje(self, destinatarios, asunto, contenido):
         mensaje = Mensaje(self._email, destinatarios, asunto, contenido)
-        self._carpetas["Enviados"].agg_msj(mensaje)
+        self._carpetas["Enviados"].agregar_mensaje(mensaje)
         print(" Mensaje enviado a {destinatarios}")
     
-    def recibir_msj(self, mensaje):
-        self._carpetas["Inbox"].agg_msj(mensaje)
+    def recibir_mensaje(self, mensaje):
+        self._carpetas["Inbox"].agregar_mensaje(mensaje)
         
-    def listar_msj(self, carpeta):
+    def listar_mensaje(self, carpeta):
         if carpeta in self._carpetas:
-            return self._carpetas[carpeta].listar_msj()
+            return self._carpetas[carpeta].listar_mensaje()
         return []    
         
 # Clase Mensaje
@@ -104,13 +104,13 @@ class Carpeta: #Se crea la carpeta correspondiente.
     def nombre(self):
         return self._nombre
 
-    def listar_msjs(self): #Recibe todos los mensajesew.
+    def listar_mensaje(self): #Recibe todos los mensajesew.
         return self._mensajes
 
-    def agg_msj(self, mensaje): #Se define la función y recibe el mensaje
+    def agregar_mensaje(self, mensaje): #Se define la función y recibe el mensaje
         self._mensajes.append(mensaje)
 
-    def delete_msj(self, mensaje): #Se define la función y se recibe el parametro del mensaje
+    def delete_mensaje(self, mensaje): #Se define la función y se recibe el parametro del mensaje
         if mensaje in self._mensajes: #Busqueda de msj en la lista de msjs
             self._mensajes.remove(mensaje) #Elimina msj de una lista
             
