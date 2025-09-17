@@ -1,2 +1,2 @@
 # tp-estructura-de-datos-2025
-aldana y marko
+Aldana Ibarra y Marco de Hoyos
