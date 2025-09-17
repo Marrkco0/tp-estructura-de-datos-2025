@@ -1,22 +1,17 @@
-# Entrega 1: Modelado de Clases y Encapsulamiento
-# Definir las clases principales: Usuario, Mensaje, Carpeta, ServidorCorreo.
-# Encapsular atributos y métodos, utilizando propiedades y métodos de acceso.
-# Implementar interfaces para enviar, recibir y listar mensajes.
-# Documentar el diseño con diagramas de clases y justificación de decisiones.
-
 from abc import ABC, abstractmethod
+
 
 class GestionCorreo(ABC):
     @abstractmethod
-    def enviar_msjs(self, destinarios: str, asunto: str, contenido: str):
+    def enviar_msj(self, destinarios: str, asunto: str, contenido: str):
         pass
 
     @abstractmethod    
-    def recibir_msjs(self):
+    def recibir_msj(self):
         pass
 
     @abstractmethod
-    def listar_msjs(self, carpeta: str):
+    def listar_msj(self, carpeta: str):
         pass
 
 class ServidorCorreo:  #Representa el servidor de mensajeria
@@ -34,14 +29,14 @@ class ServidorCorreo:  #Representa el servidor de mensajeria
         return self._usuarios  # Devuelve la lista de usuarios total en el servidor.
 
 class Usuario(GestionCorreo):
-    def __init__(self, nombre,email, servidor,carpetas):
+    def __init__(self, nombre,email, servidor, carpetas):
         self._nombre = nombre
         self._email = email
         self._servidor = servidor
         self._carpetas = {
-            "inbox": Carpeta("inbox"),    # Asignación de nombre a 
-            "enviados": Carpeta("enviados"),  # Cada Carpeta
-            "papelera": Carpeta("papelera")
+            "Inbox": Carpeta("Inbox"),    # Asignación de nombre a 
+            "Enviados": Carpeta("Enviados"),  # Cada Carpeta
+            "Papelera": Carpeta("Papelera")
         }    
 
 class Mensaje: # Sea crea el mensaje 
